@@ -1,5 +1,5 @@
-import React from 'react';
-import axios from 'axios';
+import React    from 'react';
+import axios    from 'axios';
 
 
 
@@ -15,11 +15,13 @@ class LogOut extends React.Component {
 
     render (){
         return (
-            <div className="log-out">
-                <span className="log-out" onClick={this.logout.bind(this)}>
-                    Logout
-                </span>
-
+            <div>
+                <div className='log-out'>
+                    <span  onClick={this.logout.bind(this)}>
+                        Logout
+                    </span>
+                </div>
+                <div className='clear-float'></div>
             </div>
 
         );

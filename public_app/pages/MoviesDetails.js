@@ -1,11 +1,10 @@
-import React from 'react';
+import React    from 'react';
+import BigImg   from '../components/BigImg';
+import Nav      from '../components/Nav';
+import Details  from '../components/Details';
+import LogOut   from '../components/LogOut';
+import axios    from 'axios';
 var Link = require ('react-router-dom').Link;
-import BigImg from '../components/BigImg';
-import Nav   from '../components/Nav';
-import Details   from '../components/Details';
-import LogOut    from '../components/LogOut';
-import axios from 'axios';
-
 
 
 
@@ -69,37 +68,45 @@ class MoviesDetails extends React.Component {
                     <LogOut />
                 </Link>
                 <Nav />
-                <Details src={item.Poster} title={item.Title} imbdRating={item.imdbRating} released={item.Released} genre={item.Genre} actors={item.Actors} />
-                <div>
-                    {this.state.chat.map((comment) =>{
-                        return <div>Author:{comment.user}  Text:{comment.comment}</div>
-                    })}
-                    {console.log(this.state.chat)}
+                <div className='comment-container'>
+                    <Details src={item.Poster} title={item.Title} imdbRating={item.imdbRating} released={item.Released} genre={item.Genre} actors={item.Actors} />
+                    <div className='form-container'>
+                        <div className='chat-area'>
+                            {this.state.chat.map((comment) =>{
+                                return <div>- {comment.user}: {comment.comment}</div>
+                            })}
+                            {console.log(this.state.chat)}
+                        </div>
+                        <form>
+                            <div>
+                                <div>Username</div>
+                                <input id='input-username' value={this.state.chatInput.author} type="text" placeholder='User' onChange={(event) =>{
+                                        this.setState({
+                                            chatInput: {
+                                                author: event.target.value,
+                                                comment: this.state.chatInput.comment
+                                            }
+                                        });
+                                        console.log(this.state);
+                                    }} />
+                            </div>
+                            <div>
+                                <div>Comment</div>
+                                <textarea id='input-textarea' value={this.state.chatInput.comment} type="text" placeholder='Comment' onChange={(event) =>{
+                                        this.setState({
+                                            chatInput: {
+                                                author: this.state.chatInput.author,
+                                                comment: event.target.value
+
+                                            }
+                                        });
+                                        console.log(this.state);
+                                    }} />
+                            </div>
+                        </form>
+                    </div>
+                    <button className='send-button' onClick={this.handleClick.bind(this)}>Send</button>
                 </div>
-                <form>
-                    <input value={this.state.chatInput.author} type="text" placeholder='User' onChange={(event) =>{
-                            this.setState({
-                                chatInput: {
-                                    author: event.target.value,
-                                    comment: this.state.chatInput.comment
-                                }
-                            });
-                            console.log(this.state);
-                        }} />
-                    <textarea value={this.state.chatInput.comment} type="text" placeholder='Comment' onChange={(event) =>{
-                            this.setState({
-                                chatInput: {
-                                    author: this.state.chatInput.author,
-                                    comment: event.target.value
-
-                                }
-                            });
-                            console.log(this.state);
-                        }} />
-
-
-                </form>
-                <button onClick={this.handleClick.bind(this)}>Send</button>
             </div>
         );
     }

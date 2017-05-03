@@ -34,6 +34,9 @@ db.once('open', function() {
     app.get("/index_bundle.js", (req, res) =>{
         res.sendFile(path.join(__dirname, "../public/index_bundle.js"));
     });
+    app.get("/login", (req, res) =>{
+        res.sendFile(path.join(__dirname, "../public/index.css"));
+    });
     //Parses cokie in an object
     app.use(cookieParser());
 

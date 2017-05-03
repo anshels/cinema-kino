@@ -21,7 +21,6 @@ class App extends React.Component{
             <Router>
                 <div className="page">
                     <div className="container">
-
                         <Switch>
                             <Route exact path='/' component={Home} />
                             <Route exact path='/movies-details/:id' component={MoviesDetails} />

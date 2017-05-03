@@ -1,4 +1,4 @@
-import React from 'react';
+import React    from 'react';
 var Link = require ('react-router-dom').Link;
 
 import Carousel from 'nuka-carousel';
@@ -12,7 +12,7 @@ class MovieItem extends React.Component {
     }
     render (){
         return (
-            <div>
+            <div className="movie-item">
                 <Link to={'/movies-details/' + this.props.id}>
                         <img key={this.props.id} src={this.props.src}/>
 

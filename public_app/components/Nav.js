@@ -1,4 +1,4 @@
-import React from 'react';
+import React    from 'react';
 var NavLink = require('react-router-dom').NavLink;
 
 function Nav (){
@@ -11,9 +11,7 @@ function Nav (){
                 <NavLink exact activeClassName='active' to='/all-movies'>
                     All Movies
                 </NavLink>
-                <NavLink exact activeClassName='active' to='/login/register'>
-                    Registration
-                </NavLink>
+
             </div>
         </div>
     )

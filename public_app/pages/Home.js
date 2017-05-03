@@ -1,10 +1,24 @@
-import React    from 'react';
-import BigImg   from '../components/BigImg';
-import Nav      from '../components/Nav';
+import React        from 'react';
+import BigImg       from '../components/BigImg';
+import Nav          from '../components/Nav';
+import LogOut       from '../components/LogOut';
+import SearchBox    from '../components/SearchBox';
 var Link = require ('react-router-dom').Link;
-import LogOut    from '../components/LogOut';
 
 class Home extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            inputValue: ''
+        };
+        this.handleSearch = this.handleSearch.bind(this);
+    }
+    handleSearch(value){
+        this.setState ({
+            inputValue: value
+        });
+        console.log('home value :',value);
+    }
     render (){
         return (
             <div>
@@ -12,8 +26,9 @@ class Home extends React.Component {
                     <LogOut />
                 </Link>
                 <Nav />
-                <h1> Here will be movies soon</h1>
-                <BigImg />
+                <SearchBox inputValue={this.handleSearch}/>
+                <h2 className="home-header">Newest Movies in one place</h2>
+                <BigImg inputFieldValue={this.state.inputValue}/>
             </div>
         )
     }
