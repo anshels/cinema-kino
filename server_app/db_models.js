@@ -41,6 +41,7 @@ const sessionSchema = mongoose.Schema({
     username: String
 })
 
+
 export const Movie = mongoose.model("movie", movieSchema);
 export const Comment = mongoose.model("comment", movieComentSchema);
 export const User = mongoose.model("user", userSchema);

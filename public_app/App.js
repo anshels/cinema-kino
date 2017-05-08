@@ -1,17 +1,17 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var ReactRouter = require('react-router-dom');
-var Router = ReactRouter.BrowserRouter;
-var Route = ReactRouter.Route;
-var Switch = ReactRouter.Switch;
-var Link = require ('react-router-dom').Link;
+const React = require('react');
+const ReactDOM = require('react-dom');
+const ReactRouter = require('react-router-dom');
+const Router = ReactRouter.BrowserRouter;
+const Route = ReactRouter.Route;
+const Switch = ReactRouter.Switch;
+import {Link}           from 'react-router-dom';
 import Nav              from './components/Nav';
 import AllMovies        from './pages/AllMovies';
 import Home             from './pages/Home';
 import MoviesDetails    from './pages/MoviesDetails';
 import Register         from './pages/Register';
-import Login         from './pages/Login';
-import LogOut              from './components/LogOut';
+import Login            from './pages/Login';
+import LogOut           from './components/LogOut';
 
 
 

@@ -1,17 +1,16 @@
-import React    from 'react';
-var NavLink = require('react-router-dom').NavLink;
+import React        from 'react';
+import {NavLink}    from 'react-router-dom';
 
 function Nav (){
     return (
-        <div className='NavContainer'>
-            <div className='Nav'>
+        <div className='nav-container'>
+            <div className='nav'>
                 <NavLink exact activeClassName='active' to='/'>
                     Home
                 </NavLink>
                 <NavLink exact activeClassName='active' to='/all-movies'>
                     All Movies
                 </NavLink>
-
             </div>
         </div>
     )

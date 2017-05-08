@@ -1,13 +1,11 @@
-import React    from 'react';
-import BigImg   from '../components/BigImg';
-import Nav      from '../components/Nav';
-import Details  from '../components/Details';
-import LogOut   from '../components/LogOut';
-import axios    from 'axios';
-var Link = require ('react-router-dom').Link;
-
-
-
+import React        from 'react';
+import axios        from 'axios';
+import {Link}       from 'react-router-dom';
+import BigImg       from '../components/BigImg';
+import Nav          from '../components/Nav';
+import Details      from '../components/Details';
+import LogOut       from '../components/LogOut';
+import {getMoviesId, getComments}  from '../services/getData';
 
 class MoviesDetails extends React.Component {
 
@@ -21,30 +19,26 @@ class MoviesDetails extends React.Component {
                 comment: ''
             }
         };
-        console.log(this.state);
-        axios.get(`/api/movies/${this.props.match.params.id}`
-                 ).then((response) => {
+        getMoviesId(this.props.match.params.id, response => {
             this.setState({
                 item: response.data
             });
         });
-        axios.get(`/api/comment/${this.props.match.params.id}`
-                 ).then((response) => {
+        getComments(this.props.match.params.id, response => {
             this.setState({
                 chat: response.data
             });
         });
     }
     handleApi(){
-        axios.get(`/api/comment/${this.props.match.params.id}`
-                 ).then((response) => {
+         getComments(this.props.match.params.id, response => {
             this.setState({
                 chat: response.data
             });
         });
     }
     handleClick(event){
-        let comment = {
+        const comment = {
             movieId: this.props.match.params.id,
             user: this.state.chatInput.author,
             comment: this.state.chatInput.comment
@@ -67,15 +61,14 @@ class MoviesDetails extends React.Component {
                 <Link to={'/login'}>
                     <LogOut />
                 </Link>
+                <div className='logo-header'>Cinema Star</div>
                 <Nav />
                 <div className='comment-container'>
                     <Details src={item.Poster} title={item.Title} imdbRating={item.imdbRating} released={item.Released} genre={item.Genre} actors={item.Actors} />
                     <div className='form-container'>
                         <div className='chat-area'>
-                            {this.state.chat.map((comment) =>{
-                                return <div>- {comment.user}: {comment.comment}</div>
-                            })}
-                            {console.log(this.state.chat)}
+                            {this.state.chat.map((comment) => <div>- {comment.user}: {comment.comment}</div>
+                                                )}
                         </div>
                         <form>
                             <div>
@@ -87,7 +80,6 @@ class MoviesDetails extends React.Component {
                                                 comment: this.state.chatInput.comment
                                             }
                                         });
-                                        console.log(this.state);
                                     }} />
                             </div>
                             <div>
@@ -100,7 +92,6 @@ class MoviesDetails extends React.Component {
 
                                             }
                                         });
-                                        console.log(this.state);
                                     }} />
                             </div>
                         </form>

@@ -6,7 +6,7 @@ import cookieParser     from 'cookie-parser'
 import movies_route     from "./movies_route"
 import comment_route    from "./comment_route"
 import login_route      from "./login_route"
-import cookie_route      from "./cookie_route"
+import cookie_route     from "./cookie_route"
 
 
 mongoose.connect("mongodb://localhost");
@@ -34,7 +34,7 @@ db.once('open', function() {
     app.get("/index_bundle.js", (req, res) =>{
         res.sendFile(path.join(__dirname, "../public/index_bundle.js"));
     });
-    app.get("/login", (req, res) =>{
+    app.get("/index.css", (req, res) =>{
         res.sendFile(path.join(__dirname, "../public/index.css"));
     });
     //Parses cokie in an object
@@ -46,6 +46,7 @@ db.once('open', function() {
     app.use(cookie_route);
 
     app.use(express.static("public"));
+    console.log(express.static("public"));
 
     app.use("/api/movies", movies_route);
     app.use("/api/comment", comment_route);

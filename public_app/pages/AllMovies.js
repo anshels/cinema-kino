@@ -1,10 +1,10 @@
 import React        from 'react';
+import axios        from 'axios';
 import Nav          from '../components/Nav';
 import LogOut       from '../components/LogOut';
 import MovieItem    from '../components/MovieItem';
-import axios        from 'axios';
-
-var Link = require ('react-router-dom').Link;
+import {Link}       from 'react-router-dom';
+import {getMovies}  from '../services/getData';
 
 class AllMovies extends React.Component {
     constructor (props) {
@@ -12,13 +12,11 @@ class AllMovies extends React.Component {
         this.state = {
             items: []
         };
-        axios.get("api/movies").then((response) => {
+        getMovies(response => {
             this.setState({
                 items: response.data
             });
-            console.log(response);
-        });
-
+        })
     }
     render (){
         return (
@@ -26,12 +24,12 @@ class AllMovies extends React.Component {
                 <Link to={'/login'}>
                     <LogOut />
                 </Link>
+                <div className='logo-header'>Cinema Star</div>
                 <Nav />
                 <div className="">
                     <div className='all-img-view'>
-                        {this.state.items.map((item) => {
-                            return <MovieItem key={item.Title} id={item._id} src={item.Poster}/>;
-                        } )}
+                        {this.state.items.map((item) =><MovieItem key={item.Title} id={item._id} src={item.Poster}/>
+                         )}
                     </div>
                 </div>
             </div>

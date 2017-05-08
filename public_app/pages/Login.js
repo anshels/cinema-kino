@@ -1,7 +1,6 @@
 import React    from 'react';
-import { browserHistory } from "react-router";
 import axios    from 'axios';
-var Link = require ('react-router-dom').Link;
+import {Link}   from 'react-router-dom';
 
 class Login extends React.Component {
 
@@ -11,8 +10,7 @@ class Login extends React.Component {
             username: '',
             password: '',
             loginFailed: false
-        }
-        console.log(this.state);
+        };
         this.login = this.login.bind(this);
     }
     login(){
@@ -21,7 +19,7 @@ class Login extends React.Component {
             password: this.state.password
         }).then((res) => {
             this.props.history.push('/');
-        })
+        });
     }
     render (){
         return(
@@ -32,17 +30,18 @@ class Login extends React.Component {
                 <div className='input-field-container'>
                     <div className='input-field-middle'>
                         <div className="input-field">
-                            <input placeholder=" Username" type="text" onChange={(event) =>{
+                            <input placeholder=" Username" type="text"
+                                onChange={ event =>{
                                     this.setState({
                                         username : event.target.value
-                                    })}}/></div>
+                                    });
+                                }}/></div>
 
                         <div className="input-field">
                             <input placeholder=" Password" type="password" onChange={(event) => {
                                     this.setState= ({
                                         password: event.target.value
-                                    })
-                                    console.log(this.state);
+                                    });
                                 }} /></div>
                         <button className="login-button" onClick={this.login}>Login</button>
                         <div>
@@ -55,7 +54,7 @@ class Login extends React.Component {
 
 
             </div>
-        )
+        );
     }
 }
 export default Login;

@@ -1,9 +1,9 @@
 import React        from 'react';
+import {Link}       from 'react-router-dom';
 import BigImg       from '../components/BigImg';
 import Nav          from '../components/Nav';
 import LogOut       from '../components/LogOut';
 import SearchBox    from '../components/SearchBox';
-var Link = require ('react-router-dom').Link;
 
 class Home extends React.Component {
     constructor (props) {
@@ -17,7 +17,6 @@ class Home extends React.Component {
         this.setState ({
             inputValue: value
         });
-        console.log('home value :',value);
     }
     render (){
         return (
@@ -25,6 +24,7 @@ class Home extends React.Component {
                 <Link to={'/login'}>
                     <LogOut />
                 </Link>
+                <div className='logo-header'>Cinema Star</div>
                 <Nav />
                 <SearchBox inputValue={this.handleSearch}/>
                 <h2 className="home-header">Newest Movies in one place</h2>

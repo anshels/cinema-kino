@@ -1,8 +1,6 @@
 import React    from 'react';
 import axios    from 'axios';
-
-import { Link, browserHistory } from "react-router";
-
+import { Link}  from "react-router-dom";
 
 class Register extends React.Component {
 
@@ -12,7 +10,6 @@ class Register extends React.Component {
             username: '',
             password: ''
         }
-        console.log(this.state);
         this.register = this.register.bind(this);
     }
     register(){
@@ -34,13 +31,12 @@ class Register extends React.Component {
                         <div className="input-field">Username: <input type="text" onChange={(event) =>{
                                     this.setState({
                                         username : event.target.value
-                                    })}}/></div>
-
+                                    })
+                                }}/></div>
                         <div className="input-field">Password: <input type="password" onChange={(event) => {
                                     this.setState= ({
                                         password: event.target.value
                                     })
-                                    console.log(this.state);
                                 }} /></div>
                         <button className="login-button" onClick={this.register}>Register</button>
                     </div>
