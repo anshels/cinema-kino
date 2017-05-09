@@ -8,12 +8,12 @@ import LogOut       from '../components/LogOut';
 import {getMoviesId, getComments}  from '../services/getData';
 
 class MoviesDetails extends React.Component {
-
     constructor (props) {
         super(props);
         this.state = {
             item: {},
             chat: [],
+            star: false,
             chatInput: {
                 author: '',
                 comment: ''
@@ -29,6 +29,13 @@ class MoviesDetails extends React.Component {
                 chat: response.data
             });
         });
+        axios.get(`/api/star/${this.getCookies().username}/${this.props.match.params.id}`).then(response => {
+            if (response.data){
+                this.setState({
+                    star: true
+                });
+            }
+        })
     }
     handleApi(){
          getComments(this.props.match.params.id, response => {
@@ -53,9 +60,30 @@ class MoviesDetails extends React.Component {
         })
         this.handleApi()
     }
+    getCookies(){
+        return decodeURIComponent(document.cookie)
+            .split(';')
+            .reduce( (cookieObject, cookie) => {
+                const splittedCookie = cookie.trim().split('=');
+                cookieObject[splittedCookie[0]] = splittedCookie[1];
+                return cookieObject;
+            }, {});
+    }
+    handleLike(){
+        console.log('HandleLike start');
+        const cookies = this.getCookies();
+        console.log('string cookies', cookies.username);
+        axios.post(`/api/star/`, {
+            username: cookies.username,
+            movieId: this.props.match.params.id
+        });
+        console.log(this.state.like);
+        this.setState({
+            star: !this.state.star
+        });
+    }
     render (){
-        let item = this.state.item;
-
+        const { star, item } = this.state;
         return (
             <div>
                 <Link to={'/login'}>
@@ -66,6 +94,9 @@ class MoviesDetails extends React.Component {
                 <div className='comment-container'>
                     <Details src={item.Poster} title={item.Title} imdbRating={item.imdbRating} released={item.Released} genre={item.Genre} actors={item.Actors} />
                     <div className='form-container'>
+                        <div>
+                            <button  className={star? 'like-button' : 'dislike-button'} onClick={this.handleLike.bind(this)}>Like</button>
+                        </div>
                         <div className='chat-area'>
                             {this.state.chat.map((comment) => <div>- {comment.user}: {comment.comment}</div>
                                                 )}

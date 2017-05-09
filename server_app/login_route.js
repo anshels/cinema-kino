@@ -14,7 +14,7 @@ router.use(bodyParser.json());
 router.route("/")
     .post((req, res) => {
     User.find({username: req.body.username}, (err, users) => {
-
+        console.log(req.body);
         if(err || users.length !==1) {
             console.log("Failed Login")
             res.sendStatus(401);
@@ -25,13 +25,13 @@ router.route("/")
             .createHash('sha256')
             .update(`${req.body.password}${user.salt}`)
             .digest("hex");
-
+            console.log(user.username);
             if (computedHash === user.hash) {
                 let session = sessionLib.create(user.username);
                 res.cookie("sessionID", session.sessionID, {path: '/'});
                 res.cookie("username", user.username, {path: '/'});
                 res.sendStatus(200);
-                console.log("LOGGED in")
+                console.log("LOGGED in", req.body.password)
         } else {
             console.log("[AUTH] Login failed, password wrong!");
             res.sendStatus(401);
@@ -47,9 +47,12 @@ router.route("/register")
 
         User.find({ username: req.body.username}, (err, users) =>{
             //check if user exists already
-            if (users.length < 0){
+            console.log(users.length);
+            if (users.length > 1){
                 res.sendStatus(409);
-            }else {
+            } else if(users.username === req.body.username){
+                res.sendStatus(410);
+            } else {
                 console.log("REGISTER Ok");
                 // password storage
                 let salt = crypto.randomBytes(256).toString('hex');

@@ -17,6 +17,7 @@ router.route("/:movieId")
     Comment.find({ movieId: req.params.movieId }, (err, commentList) => {
         res.json(commentList);
     });
+
 })
     .post((req, res) => {
     console.log("Comment submitted", req.body);
@@ -30,6 +31,7 @@ router.route("/:movieId")
     });
     res.sendStatus(200);
 });
+
 
 
 export default router;

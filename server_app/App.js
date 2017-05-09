@@ -7,6 +7,7 @@ import movies_route     from "./movies_route"
 import comment_route    from "./comment_route"
 import login_route      from "./login_route"
 import cookie_route     from "./cookie_route"
+import star_route     from "./star_route"
 
 
 mongoose.connect("mongodb://localhost");
@@ -37,6 +38,7 @@ db.once('open', function() {
     app.get("/index.css", (req, res) =>{
         res.sendFile(path.join(__dirname, "../public/index.css"));
     });
+    app.use('/api/star', star_route);
     //Parses cokie in an object
     app.use(cookieParser());
 
@@ -50,6 +52,7 @@ db.once('open', function() {
 
     app.use("/api/movies", movies_route);
     app.use("/api/comment", comment_route);
+
 
     // Rest API routes
     // Register react app paths, so they can be visited directly too

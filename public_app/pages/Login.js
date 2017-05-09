@@ -9,7 +9,7 @@ class Login extends React.Component {
         this.state ={
             username: '',
             password: '',
-            loginFailed: false
+            loginError: false
         };
         this.login = this.login.bind(this);
     }
@@ -19,9 +19,14 @@ class Login extends React.Component {
             password: this.state.password
         }).then((res) => {
             this.props.history.push('/');
-        });
+        }).catch((error) => {
+            this.setState({
+                loginError: true
+            })
+        })
     }
     render (){
+        const loginError = this.state.loginError;
         return(
             <div className="input-field-form">
 
@@ -29,17 +34,24 @@ class Login extends React.Component {
                 <h3>Registred user only</h3>
                 <div className='input-field-container'>
                     <div className='input-field-middle'>
+                        {loginError ?
+                            <div className='login-error'>
+                                Invalid username or password
+                            </div>
+                            :
+                            <div></div>
+                        }
                         <div className="input-field">
                             <input placeholder=" Username" type="text"
                                 onChange={ event =>{
                                     this.setState({
-                                        username : event.target.value
+                                        username: event.target.value
                                     });
                                 }}/></div>
-
                         <div className="input-field">
-                            <input placeholder=" Password" type="password" onChange={(event) => {
-                                    this.setState= ({
+                            <input placeholder=" Password" type="password"
+                                onChange={event => {
+                                    this.setState({
                                         password: event.target.value
                                     });
                                 }} /></div>

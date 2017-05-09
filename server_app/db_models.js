@@ -28,21 +28,23 @@ const movieComentSchema = mongoose.Schema({
     movieId: String,
     user: String,
     comment: String
-
 });
 const userSchema = mongoose.Schema({
     username: String,
     hash: String,
-    salt: String,
+    salt: String
 });
-
 const sessionSchema = mongoose.Schema({
     sessionID: String,
     username: String
-})
-
+});
+const starSchema = mongoose.Schema({
+    movieId: String,
+    username: String
+});
 
 export const Movie = mongoose.model("movie", movieSchema);
 export const Comment = mongoose.model("comment", movieComentSchema);
 export const User = mongoose.model("user", userSchema);
 export const Session = mongoose.model("session", sessionSchema);
+export const Star = mongoose.model("star", starSchema);
