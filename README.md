@@ -1,33 +1,34 @@
+![Cinema Star](/assets/readme_img.png?raw=true "Cinema Star")
+
 # Cinema Star
-Best site for movie fans.
+> Best site for movie fans.
 
 ##  Features
--React front-end
--ExpressJS server with MongoDB for data storage
--Login and register functionality
--Access only for registered users
--Search results update instantly
--Favorite movie
--Movie carousel
--Comments update instantly\
+- React front-end
+- ExpressJS server with MongoDB for data storage
+- Login and register functionality
+- Access only for registered users
+- Search results update instantly
+- Favorite movie
+- Movie carousel
+- Comments update instantly
 
 ## How to setup local environment
--Install NodeJS un NPM
--Install MongoDB
+- Install NodeJS un NPM
+- Install MongoDB
  >[https://www.mongodb.com/download-center#community](https://www.mongodb.com/download-center#community)
 
--Run ```npm install```
--Run ```npm webpack-client``` and ```npm run webpack-server```
--Run mongoDB server with ```--dbpath``` of the ```db/``` folder in project root
+- Run ```npm install```
+- Run ```npm webpack-client``` and ```npm run webpack-server```
+- Run mongoDB server with ```--dbpath``` of the ```db/``` folder in project root
 > mongod.exe --dbpath path\to\project\mongodb
 
--Run ```node DB.js``` to initialize the mongoDB
--Run ```npm run start```
--Visit the site on ```localhost:8080```
+- Run ```node DB.js``` to initialize the mongoDB
+- Run ```npm run start```
+- Visit the site on ```localhost:8080```
 
 ## Tehnologies used
--ReactJS
--PureCSS
--Webpack
--MongoDB
--ExpressJS(NodeJS)
+- ReactJS
+- Webpack
+- MongoDB
+- ExpressJS(NodeJS)
