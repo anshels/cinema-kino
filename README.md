@@ -1,4 +1,4 @@
-![Cinema Star](/assets/readme_img.png?raw=true "Cinema Star")
+![Cinema Star](https://github.com/anshels/cinema-kino/blob/master/assets/readme_img.PNG)
 
 # Cinema Star
 > Best site for movie fans.
