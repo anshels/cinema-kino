@@ -22,7 +22,7 @@ router.route("/:movieId")
     .post((req, res) => {
     console.log("Comment submitted", req.body);
 
-
+    //saves new comment
     let newComment = new Comment(req.body);
     newComment.save((err, newComment) => {
         if (err) {

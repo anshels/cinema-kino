@@ -5,10 +5,10 @@ function Nav (){
     return (
         <div className='nav-container'>
             <div className='nav'>
-                <NavLink exact activeClassName='active' to='/'>
+                <NavLink className='nav-title' exact activeClassName='active' to='/'>
                     Home
                 </NavLink>
-                <NavLink exact activeClassName='active' to='/all-movies'>
+                <NavLink className='nav-title' exact activeClassName='active' to='/all-movies'>
                     All Movies
                 </NavLink>
             </div>

@@ -2,7 +2,7 @@ import express      from "express"
 import { Star }    from "./db_models"
 import bodyParser   from "body-parser"
 
-// Route "/api/comment"
+// Route "/api/star"
 
 let router = express.Router();
 
@@ -17,11 +17,8 @@ router
 
     })
     .post("/", (req, res) => {
-    console.log("Star", req.body);
         Star.findOneAndRemove({ movieId: req.body.movieId, username: req.body.username }, (err, star) => {
-            console.log('save before');
             if (!star){
-                console.log('save:');
                 const newStar = new Star(req.body);
                 newStar.save((err, newStar) => {
                     if (err) {
@@ -32,10 +29,8 @@ router
             res.sendStatus(200);
         });
     });
-
 router.all("/", (req, res) => {
     res.sendStatus(204);
 });
-
 
 export default router;

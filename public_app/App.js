@@ -13,8 +13,6 @@ import Register         from './pages/Register';
 import Login            from './pages/Login';
 import LogOut           from './components/LogOut';
 
-
-
 class App extends React.Component{
     render () {
         return (
@@ -35,11 +33,9 @@ class App extends React.Component{
                     </div>
                 </div>
             </Router>
-
         )
     }
 }
-
 ReactDOM.render(
     <App />, document.getElementById('app')
 );

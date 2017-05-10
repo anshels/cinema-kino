@@ -28,7 +28,7 @@ class AllMovies extends React.Component {
                 <Nav />
                 <div className="">
                     <div className='all-img-view'>
-                        {this.state.items.map((item) =><MovieItem key={item.Title} id={item._id} src={item.Poster}/>
+                        {this.state.items.map((item) =><MovieItem key={item._id} id={item._id} src={item.Poster}/>
                          )}
                     </div>
                 </div>

@@ -38,7 +38,7 @@ class MoviesDetails extends React.Component {
         })
     }
     handleApi(){
-         getComments(this.props.match.params.id, response => {
+        getComments(this.props.match.params.id, response => {
             this.setState({
                 chat: response.data
             });
@@ -64,10 +64,10 @@ class MoviesDetails extends React.Component {
         return decodeURIComponent(document.cookie)
             .split(';')
             .reduce( (cookieObject, cookie) => {
-                const splittedCookie = cookie.trim().split('=');
-                cookieObject[splittedCookie[0]] = splittedCookie[1];
-                return cookieObject;
-            }, {});
+            const splittedCookie = cookie.trim().split('=');
+            cookieObject[splittedCookie[0]] = splittedCookie[1];
+            return cookieObject;
+        }, {});
     }
     handleLike(){
         console.log('HandleLike start');
@@ -93,13 +93,12 @@ class MoviesDetails extends React.Component {
                 <Nav />
                 <div className='comment-container'>
                     <Details src={item.Poster} title={item.Title} imdbRating={item.imdbRating} released={item.Released} genre={item.Genre} actors={item.Actors} />
-                    <div className='form-container'>
-                        <div>
-                            <button  className={star? 'like-button' : 'dislike-button'} onClick={this.handleLike.bind(this)}>Like</button>
+                    <a href="#" className='star-click' onClick={this.handleLike.bind(this)}><div className={!star? 'star-container' : 'star-container-dislike'}><span className='star'>☆</span>
                         </div>
+                    </a>
+                    <div className='form-container'>
                         <div className='chat-area'>
-                            {this.state.chat.map((comment) => <div>- {comment.user}: {comment.comment}</div>
-                                                )}
+                            {this.state.chat.map( comment => <div>- {comment.user}: {comment.comment}</div>)}
                         </div>
                         <form>
                             <div>
@@ -120,7 +119,6 @@ class MoviesDetails extends React.Component {
                                             chatInput: {
                                                 author: this.state.chatInput.author,
                                                 comment: event.target.value
-
                                             }
                                         });
                                     }} />

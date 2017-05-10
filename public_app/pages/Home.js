@@ -19,6 +19,7 @@ class Home extends React.Component {
         });
     }
     render (){
+        const { inputValue } =this.state;
         return (
             <div>
                 <Link to={'/login'}>
@@ -27,8 +28,12 @@ class Home extends React.Component {
                 <div className='logo-header'>Cinema Star</div>
                 <Nav />
                 <SearchBox inputValue={this.handleSearch}/>
-                <h2 className="home-header">Newest Movies in one place</h2>
-                <BigImg inputFieldValue={this.state.inputValue}/>
+                { inputValue ?
+                    <h2 className="home-header">Search results :</h2>
+                    :
+                    <h2 className="home-header">Newest Movies in one place</h2>
+                }
+                <BigImg inputFieldValue={inputValue}/>
             </div>
         )
     }

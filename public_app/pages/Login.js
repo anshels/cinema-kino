@@ -29,7 +29,6 @@ class Login extends React.Component {
         const loginError = this.state.loginError;
         return(
             <div className="input-field-form">
-
                 <h1>Login</h1>
                 <h3>Registred user only</h3>
                 <div className='input-field-container'>
@@ -63,8 +62,6 @@ class Login extends React.Component {
                         </div>
                     </div>
                 </div>
-
-
             </div>
         );
     }

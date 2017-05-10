@@ -25,7 +25,6 @@ class Register extends React.Component {
                 registerError: true
             })
         })
-
     }
     render (){
         const registerError = this.state.registerError;

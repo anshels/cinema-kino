@@ -38,7 +38,6 @@ db.once('open', function() {
     app.get("/index.css", (req, res) =>{
         res.sendFile(path.join(__dirname, "../public/index.css"));
     });
-    app.use('/api/star', star_route);
     //Parses cokie in an object
     app.use(cookieParser());
 
@@ -49,7 +48,7 @@ db.once('open', function() {
 
     app.use(express.static("public"));
     console.log(express.static("public"));
-
+    app.use('/api/star', star_route);
     app.use("/api/movies", movies_route);
     app.use("/api/comment", comment_route);
 

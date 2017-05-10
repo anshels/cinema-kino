@@ -5,12 +5,12 @@ import bodyParser  from "body-parser";
 import sessionLib  from "./session"
 
 
-// Route "/api/movies"
+// Route "/api/login"
 
 let router = express.Router();
 
 router.use(bodyParser.json());
-
+// checks if login is correct
 router.route("/")
     .post((req, res) => {
     User.find({username: req.body.username}, (err, users) => {
@@ -41,7 +41,7 @@ router.route("/")
     })
 
 })
-
+// creates new user
 router.route("/register")
     .post((req, res) => {
 
@@ -76,6 +76,7 @@ router.route("/register")
             }
         })
 })
+// deletes username and sessionId cookies
 router.route("/logout")
     .post((req, res) => {
     res.clearCookie("sessionID");
